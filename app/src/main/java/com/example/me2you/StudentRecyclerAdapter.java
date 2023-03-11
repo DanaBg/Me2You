@@ -19,7 +19,6 @@ import java.util.List;
 class StudentViewHolder extends RecyclerView.ViewHolder{
     TextView nameTv;
     TextView idTv;
-    CheckBox cb;
     List<Student> data;
     ImageView avatarImage;
     public StudentViewHolder(@NonNull View itemView, StudentRecyclerAdapter.OnItemClickListener listener, List<Student> data) {
@@ -28,15 +27,6 @@ class StudentViewHolder extends RecyclerView.ViewHolder{
         nameTv = itemView.findViewById(R.id.studentlistrow_name_tv);
         idTv = itemView.findViewById(R.id.studentlistrow_id_tv);
         avatarImage = itemView.findViewById(R.id.studentlistrow_avatar_img);
-        cb = itemView.findViewById(R.id.studentlistrow_cb);
-        cb.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                int pos = (int)cb.getTag();
-                Student st = data.get(pos);
-                st.cb = cb.isChecked();
-            }
-        });
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -49,8 +39,6 @@ class StudentViewHolder extends RecyclerView.ViewHolder{
     public void bind(Student st, int pos) {
         nameTv.setText(st.name);
         idTv.setText(st.id);
-        cb.setChecked(st.cb);
-        cb.setTag(pos);
         if (st.getAvatarUrl()  != null && st.getAvatarUrl().length() > 5) {
             Picasso.get().load(st.getAvatarUrl()).placeholder(R.drawable.avatar).into(avatarImage);
         }else{

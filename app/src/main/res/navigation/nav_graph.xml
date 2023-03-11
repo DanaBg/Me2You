@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/studentsListFragment"
         android:name="com.example.me2you.StudentsListFragment"
-        android:label="Students List"
+        android:label="Shared Items"
         tools:layout="@layout/fragment_students_list">
         <action
             android:id="@+id/action_studentsListFragment_to_blueFragment"
