@@ -1,4 +1,4 @@
-package com.example.class3demo2.model;
+package com.example.me2you.model;
 
 import retrofit2.Call;
 import retrofit2.http.GET;

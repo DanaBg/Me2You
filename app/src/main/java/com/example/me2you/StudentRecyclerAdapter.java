@@ -1,4 +1,4 @@
-package com.example.class3demo2;
+package com.example.me2you;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,7 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.class3demo2.model.Student;
+import com.example.me2you.model.Student;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;

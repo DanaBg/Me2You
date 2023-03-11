@@ -1,4 +1,4 @@
-package com.example.class3demo2;
+package com.example.me2you;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
@@ -10,9 +10,8 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.DatePicker;
 
-import com.example.class3demo2.databinding.FragmentAboutBinding;
+import com.example.me2you.databinding.FragmentAboutBinding;
 
 import java.util.zip.Inflater;
 

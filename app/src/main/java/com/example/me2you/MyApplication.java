@@ -1,4 +1,4 @@
-package com.example.class3demo2;
+package com.example.me2you;
 
 import android.app.Application;
 import android.content.Context;

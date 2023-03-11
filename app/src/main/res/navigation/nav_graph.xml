@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/studentsListFragment"
-        android:name="com.example.class3demo2.StudentsListFragment"
+        android:name="com.example.me2you.StudentsListFragment"
         android:label="Students List"
         tools:layout="@layout/fragment_students_list">
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/blueFragment"
-        android:name="com.example.class3demo2.BlueFragment"
+        android:name="com.example.me2you.BlueFragment"
         android:label="fragment_blue"
         tools:layout="@layout/fragment_blue" >
         <argument
@@ -25,13 +25,13 @@
     </fragment>
     <fragment
         android:id="@+id/addStudentFragment"
-        android:name="com.example.class3demo2.AddStudentFragment"
+        android:name="com.example.me2you.AddStudentFragment"
         android:label="Add Student"
         tools:layout="@layout/fragment_add_student" />
     <action android:id="@+id/action_global_addStudentFragment" app:destination="@id/addStudentFragment" />
     <fragment
         android:id="@+id/aboutFragment"
-        android:name="com.example.class3demo2.AboutFragment"
+        android:name="com.example.me2you.AboutFragment"
         android:label="About"
         tools:layout="@layout/fragment_about" />
 </navigation>

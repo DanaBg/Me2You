@@ -1,4 +1,4 @@
-package com.example.class3demo2;
+package com.example.me2you;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -10,20 +10,18 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.class3demo2.databinding.FragmentStudentsListBinding;
-import com.example.class3demo2.model.Model;
-import com.example.class3demo2.model.Movie;
-import com.example.class3demo2.model.MovieModel;
-import com.example.class3demo2.model.Student;
+import com.example.me2you.databinding.FragmentStudentsListBinding;
+import com.example.me2you.model.Model;
+import com.example.me2you.model.Movie;
+import com.example.me2you.model.MovieModel;
+import com.example.me2you.model.Student;
 
-import java.util.LinkedList;
 import java.util.List;
 
 public class StudentsListFragment extends Fragment {

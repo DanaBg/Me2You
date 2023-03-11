@@ -1,4 +1,4 @@
-package com.example.class3demo2;
+package com.example.me2you;
 
 import android.os.Bundle;
 

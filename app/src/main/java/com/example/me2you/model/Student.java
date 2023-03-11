@@ -1,4 +1,4 @@
-package com.example.class3demo2.model;
+package com.example.me2you.model;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -7,7 +7,7 @@ import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-import com.example.class3demo2.MyApplication;
+import com.example.me2you.MyApplication;
 import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.FieldValue;
 

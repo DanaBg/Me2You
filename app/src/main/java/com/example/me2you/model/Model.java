@@ -1,4 +1,4 @@
-package com.example.class3demo2.model;
+package com.example.me2you.model;
 
 import android.graphics.Bitmap;
 import android.os.Handler;
@@ -9,7 +9,6 @@ import androidx.core.os.HandlerCompat;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
