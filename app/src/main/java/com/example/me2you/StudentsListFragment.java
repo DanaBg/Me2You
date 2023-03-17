@@ -72,7 +72,7 @@ public class StudentsListFragment extends Fragment {
         LiveData<List<Movie>> data = MovieModel.instance.searchMoviesByTitle("avatar");
         data.observe(getViewLifecycleOwner(),list->{
             list.forEach(item->{
-                Log.d("TAG","got movie: " + item.getTitle() + " " + item.getPoster());
+
             });
         });
 

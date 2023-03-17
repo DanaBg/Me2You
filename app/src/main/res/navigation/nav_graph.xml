@@ -27,7 +27,27 @@
         android:id="@+id/addStudentFragment"
         android:name="com.example.me2you.AddStudentFragment"
         android:label="Add Student"
-        tools:layout="@layout/fragment_add_student" />
+        tools:layout="@layout/fragment_add_student" >
+        <argument android:name="description"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="@null" />
+        <argument
+            android:name="size"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="@null" />
+        <argument
+            android:name="imgUrl"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="@null" />
+        <argument
+            android:name="city"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="@null" />
+    </fragment>
     <action android:id="@+id/action_global_addStudentFragment" app:destination="@id/addStudentFragment" />
     <fragment
         android:id="@+id/aboutFragment"

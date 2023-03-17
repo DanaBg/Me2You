@@ -14,6 +14,7 @@ import androidx.core.view.MenuProvider;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.Lifecycle;
+import androidx.lifecycle.LiveData;
 import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
@@ -22,15 +23,22 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 
 import com.example.me2you.databinding.FragmentAddStudentBinding;
+import com.example.me2you.model.CityModel;
 import com.example.me2you.model.Model;
 import com.example.me2you.model.Student;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class AddStudentFragment extends Fragment {
     FragmentAddStudentBinding binding;
     ActivityResultLauncher<Void> cameraLauncher;
     ActivityResultLauncher<String> galleryLauncher;
+    private ArrayAdapter<String> adapter;
 
     Boolean isAvatarSelected = false;
     @Override
@@ -75,6 +83,33 @@ public class AddStudentFragment extends Fragment {
         // Inflate the layout for this fragment
         binding = FragmentAddStudentBinding.inflate(inflater,container,false);
         View view = binding.getRoot();
+
+        ArrayList<String> cities = new ArrayList<String>();
+        LiveData<List<String>> data = CityModel.instance.getCities();
+
+        Spinner citySpinner = (Spinner) binding.spinner;
+
+        ArrayAdapter<String> cityAdapter = new ArrayAdapter<String>(getContext(),
+                android.R.layout.simple_spinner_item, cities);
+
+        cityAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        citySpinner.setAdapter(cityAdapter);
+
+        AddStudentFragmentArgs args = AddStudentFragmentArgs.fromBundle(getArguments());
+
+        data.observe(getViewLifecycleOwner(),list->{
+            list.forEach(item->{
+                cities.add(item);
+            });
+
+            String chosenCity = args.getCity();
+            if(chosenCity != null) {
+                binding.spinner.setSelection(cities.indexOf(chosenCity));
+            }
+
+            cityAdapter.notifyDataSetChanged();
+//            binding.progressBarAddPost.setVisibility(View.GONE);
+        });
 
         binding.saveBtn.setOnClickListener(view1 -> {
             String name = binding.nameEt.getText().toString();
