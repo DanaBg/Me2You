@@ -6,9 +6,9 @@ import androidx.room.RoomDatabase;
 
 import com.example.me2you.MyApplication;
 
-@Database(entities = {Student.class}, version = 80)
+@Database(entities = {Post.class}, version = 81)
 abstract class AppLocalDbRepository extends RoomDatabase {
-    public abstract StudentDao studentDao();
+    public abstract PostDao postDao();
 }
 
 public class AppLocalDb{

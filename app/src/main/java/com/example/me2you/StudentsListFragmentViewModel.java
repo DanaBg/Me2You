@@ -4,14 +4,14 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.me2you.model.Model;
-import com.example.me2you.model.Student;
+import com.example.me2you.model.Post;
 
 import java.util.List;
 
 public class StudentsListFragmentViewModel extends ViewModel {
-    private LiveData<List<Student>> data = Model.instance().getAllStudents();
+    private LiveData<List<Post>> data = Model.instance().getAllPosts();
 
-    LiveData<List<Student>> getData(){
+    LiveData<List<Post>> getData(){
         return data;
     }
 }
