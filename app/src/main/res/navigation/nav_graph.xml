@@ -59,7 +59,7 @@
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.example.me2you.ProfileFragment"
-        android:label="About"
+        android:label="My Profile"
         tools:layout="@layout/fragment_profile" />
     <action
         android:id="@+id/action_global_addPostFragment"
