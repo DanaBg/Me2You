@@ -14,6 +14,7 @@ import androidx.core.view.MenuProvider;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.Lifecycle;
+import androidx.lifecycle.LiveData;
 import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
@@ -22,13 +23,19 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 
 import com.example.me2you.databinding.FragmentAddPostBinding;
+import com.example.me2you.model.CityModel;
 import com.example.me2you.model.Model;
 import com.example.me2you.model.Post;
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class AddPostFragment extends Fragment {
     FragmentAddPostBinding binding;
@@ -83,11 +90,39 @@ public class AddPostFragment extends Fragment {
 
         AddPostFragmentArgs args = AddPostFragmentArgs.fromBundle(getArguments());
 
+        ArrayList<String> cities = new ArrayList<String>();
+        LiveData<List<String>> data = CityModel.instance.getCities();
+
+        Spinner citySpinner = (Spinner) binding.spinner;
+
+        ArrayAdapter<String> cityAdapter = new ArrayAdapter<String>(getContext(),
+                android.R.layout.simple_spinner_item, cities);
+
+        cityAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        citySpinner.setAdapter(cityAdapter);
+
+
+        data.observe(getViewLifecycleOwner(),list->{
+            list.forEach(item->{
+                cities.add(item);
+            });
+
+            String chosenCity = args.getCity();
+            if(chosenCity != null) {
+                binding.spinner.setSelection(cities.indexOf(chosenCity));
+            }
+
+            cityAdapter.notifyDataSetChanged();
+//            binding.progressBarAddPost.setVisibility(View.GONE);
+        });
+
+
         binding.saveBtn.setOnClickListener(view1 -> {
             String id;
-            String description = binding.nameEt.getText().toString();
-            String itemType = "";
-            String location = "";
+            String description = binding.descriptionTV.getText().toString();
+            String itemType = binding.itemTypeTV.getText().toString();
+            String phoneNumber = binding.phoneNumTV.getText().toString();
+            String location = args.getCity();
             String currentUserId = auth.getCurrentUser().getUid();
 
             id = args.getPostId();

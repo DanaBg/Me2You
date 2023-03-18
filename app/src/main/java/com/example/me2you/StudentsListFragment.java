@@ -41,19 +41,19 @@ public class StudentsListFragment extends Fragment {
         adapter = new StudentRecyclerAdapter(getLayoutInflater(),viewModel.getData().getValue());
         binding.recyclerView.setAdapter(adapter);
 
-//        adapter.setOnItemClickListener(new StudentRecyclerAdapter.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(int pos) {
-//                Log.d("TAG", "Row was clicked " + pos);
-//                Post st = viewModel.getData().getValue().get(pos);
-//                StudentsListFragmentDirections.ActionStudentsListFragmentToBlueFragment action = StudentsListFragmentDirections.actionStudentsListFragmentToBlueFragment(st.description);
-//                Navigation.findNavController(view).navigate(action);
-//            }
-//        });
+        adapter.setOnItemClickListener(new StudentRecyclerAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(int pos) {
+                Log.d("TAG", "Row was clicked " + pos);
+                Post st = viewModel.getData().getValue().get(pos);
+                StudentsListFragmentDirections.ActionStudentsListFragmentToBlueFragment action = StudentsListFragmentDirections.actionStudentsListFragmentToBlueFragment(st.description);
+                Navigation.findNavController(view).navigate(action);
+            }
+        });
 
         View addButton = view.findViewById(R.id.btnAdd);
-//        NavDirections action = StudentsListFragmentDirections.actionGlobalAddPostFragment();
-//        addButton.setOnClickListener(Navigation.createNavigateOnClickListener(action));
+        NavDirections action = StudentsListFragmentDirections.actionGlobalAddPostFragment();
+        addButton.setOnClickListener(Navigation.createNavigateOnClickListener(action));
 
         binding.progressBar.setVisibility(View.GONE);
 
@@ -72,7 +72,7 @@ public class StudentsListFragment extends Fragment {
         LiveData<List<Movie>> data = MovieModel.instance.searchMoviesByTitle("avatar");
         data.observe(getViewLifecycleOwner(),list->{
             list.forEach(item->{
-                Log.d("TAG","got movie: " + item.getTitle() + " " + item.getPoster());
+
             });
         });
 

@@ -11,13 +11,22 @@
         android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/orange"
             android:orientation="vertical">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            </com.google.android.material.textfield.TextInputLayout>
 
             <FrameLayout
                 android:layout_width="match_parent"
@@ -26,10 +35,10 @@
                 <ImageView
                     android:id="@+id/avatarImg"
                     android:layout_width="match_parent"
-                    android:layout_height="250dp"
+                    android:layout_height="236dp"
                     android:layout_marginTop="8dp"
                     android:scaleType="fitCenter"
-                    app:srcCompat="@drawable/avatar" />
+                    app:srcCompat="@drawable/ic_baseline_photo_camera_24" />
 
                 <ImageButton
                     android:id="@+id/galleryButton"
@@ -46,6 +55,7 @@
                     android:layout_gravity="bottom|right"
                     android:layout_margin="10dp"
                     android:src="@drawable/ic_baseline_photo_camera_24" />
+
             </FrameLayout>
 
 
@@ -59,10 +69,10 @@
                 app:startIconDrawable="@drawable/ic_baseline_edit_calendar_24">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/idEt"
+                    android:id="@+id/descriptionTV"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Student ID" />
+                    android:hint="Description" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -75,32 +85,73 @@
                 app:startIconDrawable="@drawable/ic_baseline_edit_calendar_24">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/nameEt"
+                    android:id="@+id/itemTypeTV"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Student name" />
+                    android:hint="itemType" />
             </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                app:startIconDrawable="@drawable/ic_baseline_edit_calendar_24">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/phoneNumTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="phone number"
+                    android:inputType="phone" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/cityTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="City"
+                    android:textSize="17sp" />
+
+                <Spinner
+                    android:id="@+id/spinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/spinner_background"
+                    android:contentDescription="City" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-            <Button
-                android:id="@+id/saveBtn"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:text="SAVE" />
+                <Button
+                    android:id="@+id/saveBtn"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:layout_weight="1"
+                    android:text="SAVE" />
 
-            <Button
-                android:id="@+id/cancellBtn"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:text="CANCEL" />
+                <Button
+                    android:id="@+id/cancellBtn"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:layout_weight="1"
+                    android:text="CANCEL" />
             </androidx.appcompat.widget.LinearLayoutCompat>
 
 
