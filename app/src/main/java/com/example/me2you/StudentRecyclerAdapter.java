@@ -21,19 +21,12 @@ class StudentViewHolder extends RecyclerView.ViewHolder{
     TextView idTv;
     List<Post> data;
     ImageView avatarImage;
-    public StudentViewHolder(@NonNull View itemView, StudentRecyclerAdapter.OnItemClickListener listener, List<Post> data) {
+    public StudentViewHolder(@NonNull View itemView, List<Post> data) {
         super(itemView);
         this.data = data;
         nameTv = itemView.findViewById(R.id.studentlistrow_name_tv);
         idTv = itemView.findViewById(R.id.studentlistrow_id_tv);
         avatarImage = itemView.findViewById(R.id.studentlistrow_avatar_img);
-        itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                int pos = getAdapterPosition();
-                listener.onItemClick(pos);
-            }
-        });
     }
 
     public void bind(Post st, int pos) {
@@ -48,11 +41,6 @@ class StudentViewHolder extends RecyclerView.ViewHolder{
 }
 
 public class StudentRecyclerAdapter extends RecyclerView.Adapter<StudentViewHolder>{
-    OnItemClickListener listener;
-    public static interface OnItemClickListener{
-        void onItemClick(int pos);
-    }
-
     LayoutInflater inflater;
     List<Post> data;
     public void setData(List<Post> data){
@@ -64,14 +52,11 @@ public class StudentRecyclerAdapter extends RecyclerView.Adapter<StudentViewHold
         this.data = data;
     }
 
-    void setOnItemClickListener(OnItemClickListener listener){
-        this.listener = listener;
-    }
     @NonNull
     @Override
     public StudentViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = inflater.inflate(R.layout.student_list_row,parent,false);
-        return new StudentViewHolder(view,listener, data);
+        return new StudentViewHolder(view, data);
     }
 
     @Override
