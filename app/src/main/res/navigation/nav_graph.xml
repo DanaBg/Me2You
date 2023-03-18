@@ -24,14 +24,41 @@
             app:argType="string" />
     </fragment>
     <fragment
-        android:id="@+id/addStudentFragment"
-        android:name="com.example.me2you.AddStudentFragment"
-        android:label="Add Student"
-        tools:layout="@layout/fragment_add_student" />
-    <action android:id="@+id/action_global_addStudentFragment" app:destination="@id/addStudentFragment" />
+        android:id="@+id/AddPostFragment"
+        android:name="com.example.me2you.AddPostFragment"
+        android:label="Add Post">
+        <argument
+            android:name="postId"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="@null" />
+        <argument
+            android:name="description"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="@null" />
+        <argument
+            android:name="itemType"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="@null" />
+        <argument
+            android:name="location"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="@null" />
+        <argument
+            android:name="pictureUrl"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="@null" />
+    </fragment>
     <fragment
         android:id="@+id/aboutFragment"
         android:name="com.example.me2you.AboutFragment"
         android:label="About"
         tools:layout="@layout/fragment_about" />
+    <action
+        android:id="@+id/action_global_AddPostFragment"
+        app:destination="@id/AddPostFragment" />
 </navigation>

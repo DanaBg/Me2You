@@ -39,29 +39,29 @@ public class Model {
     final public MutableLiveData<LoadingState> EventStudentsListLoadingState = new MutableLiveData<LoadingState>(LoadingState.NOT_LOADING);
 
 
-    private LiveData<List<Student>> studentList;
-    public LiveData<List<Student>> getAllStudents() {
-        if(studentList == null){
-            studentList = localDb.studentDao().getAll();
-            refreshAllStudents();
+    private LiveData<List<Post>> postsList;
+    public LiveData<List<Post>> getAllPosts() {
+        if(postsList == null){
+            postsList = localDb.postDao().getAll();
+            refreshAllPosts();
         }
-        return studentList;
+        return postsList;
     }
 
-    public void refreshAllStudents(){
+    public void refreshAllPosts(){
         EventStudentsListLoadingState.setValue(LoadingState.LOADING);
         // get local last update
-        Long localLastUpdate = Student.getLocalLastUpdate();
+        Long localLastUpdate = Post.getLocalLastUpdate();
         // get all updated recorde from firebase since local last update
-        firebaseModel.getAllStudentsSince(localLastUpdate,list->{
+        firebaseModel.getAllPostsSince(localLastUpdate,list->{
             executor.execute(()->{
                 Log.d("TAG", " firebase return : " + list.size());
                 Long time = localLastUpdate;
-                for(Student st:list){
+                for(Post st:list){
                     // insert new records into ROOM
-                    localDb.studentDao().insertAll(st);
-                    if (time < st.getLastUpdated()){
-                        time = st.getLastUpdated();
+                    localDb.postDao().insertAll(st);
+                    if (time < st.getUpdateTime()){
+                        time = st.getUpdateTime();
                     }
                 }
                 try {
@@ -70,15 +70,15 @@ public class Model {
                     e.printStackTrace();
                 }
                 // update local last update
-                Student.setLocalLastUpdate(time);
+                Post.setLocalLastUpdate(time);
                 EventStudentsListLoadingState.postValue(LoadingState.NOT_LOADING);
             });
         });
     }
 
-    public void addStudent(Student st, Listener<Void> listener){
-        firebaseModel.addStudent(st,(Void)->{
-            refreshAllStudents();
+    public void addPost(Post st, Listener<Void> listener){
+        firebaseModel.addPost(st,(Void)->{
+            refreshAllPosts();
             listener.onComplete(null);
         });
     }

@@ -36,18 +36,18 @@ public class FirebaseModel{
 
     }
 
-    public void getAllStudentsSince(Long since, Model.Listener<List<Student>> callback){
-        db.collection(Student.COLLECTION)
-                .whereGreaterThanOrEqualTo(Student.LAST_UPDATED, new Timestamp(since,0))
+    public void getAllPostsSince(Long since, Model.Listener<List<Post>> callback){
+        db.collection(Post.COLLECTION)
+                .whereGreaterThanOrEqualTo(Post.UPDATE_TIME, new Timestamp(since,0))
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                List<Student> list = new LinkedList<>();
+                List<Post> list = new LinkedList<>();
                 if (task.isSuccessful()){
                     QuerySnapshot jsonsList = task.getResult();
                     for (DocumentSnapshot json: jsonsList){
-                        Student st = Student.fromJson(json.getData());
+                        Post st = Post.fromJson(json.getData());
                         list.add(st);
                     }
                 }
@@ -56,8 +56,8 @@ public class FirebaseModel{
         });
     }
 
-    public void addStudent(Student st, Model.Listener<Void> listener) {
-        db.collection(Student.COLLECTION).document(st.getId()).set(st.toJson())
+    public void addPost(Post st, Model.Listener<Void> listener) {
+        db.collection(Post.COLLECTION).document(st.getId()).set(st.toJson())
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {

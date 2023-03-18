@@ -10,7 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.me2you.model.Student;
+import com.example.me2you.model.Post;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -19,9 +19,9 @@ import java.util.List;
 class StudentViewHolder extends RecyclerView.ViewHolder{
     TextView nameTv;
     TextView idTv;
-    List<Student> data;
+    List<Post> data;
     ImageView avatarImage;
-    public StudentViewHolder(@NonNull View itemView, StudentRecyclerAdapter.OnItemClickListener listener, List<Student> data) {
+    public StudentViewHolder(@NonNull View itemView, StudentRecyclerAdapter.OnItemClickListener listener, List<Post> data) {
         super(itemView);
         this.data = data;
         nameTv = itemView.findViewById(R.id.studentlistrow_name_tv);
@@ -36,11 +36,11 @@ class StudentViewHolder extends RecyclerView.ViewHolder{
         });
     }
 
-    public void bind(Student st, int pos) {
-        nameTv.setText(st.name);
+    public void bind(Post st, int pos) {
+        nameTv.setText(st.description);
         idTv.setText(st.id);
-        if (st.getAvatarUrl()  != null && st.getAvatarUrl().length() > 5) {
-            Picasso.get().load(st.getAvatarUrl()).placeholder(R.drawable.avatar).into(avatarImage);
+        if (st.getPictureUrl()  != null && st.getPictureUrl().length() > 5) {
+            Picasso.get().load(st.getPictureUrl()).placeholder(R.drawable.avatar).into(avatarImage);
         }else{
             avatarImage.setImageResource(R.drawable.avatar);
         }
@@ -54,12 +54,12 @@ public class StudentRecyclerAdapter extends RecyclerView.Adapter<StudentViewHold
     }
 
     LayoutInflater inflater;
-    List<Student> data;
-    public void setData(List<Student> data){
+    List<Post> data;
+    public void setData(List<Post> data){
         this.data = data;
         notifyDataSetChanged();
     }
-    public StudentRecyclerAdapter(LayoutInflater inflater, List<Student> data){
+    public StudentRecyclerAdapter(LayoutInflater inflater, List<Post> data){
         this.inflater = inflater;
         this.data = data;
     }
@@ -76,7 +76,7 @@ public class StudentRecyclerAdapter extends RecyclerView.Adapter<StudentViewHold
 
     @Override
     public void onBindViewHolder(@NonNull StudentViewHolder holder, int position) {
-        Student st = data.get(position);
+        Post st = data.get(position);
         holder.bind(st,position);
     }
 
