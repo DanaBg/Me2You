@@ -82,11 +82,29 @@
                     android:hint="Size" />
             </com.google.android.material.textfield.TextInputLayout>
 
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/cityTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="City"
+                    android:textSize="17sp" />
 
                 <Spinner
                     android:id="@+id/spinner"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/spinner_background"
+                    android:contentDescription="City" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
 
 
             <androidx.appcompat.widget.LinearLayoutCompat
