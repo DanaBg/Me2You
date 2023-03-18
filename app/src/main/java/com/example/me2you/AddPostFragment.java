@@ -26,36 +26,27 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
-import com.example.me2you.databinding.FragmentAddStudentBinding;
+import com.example.me2you.databinding.FragmentAddPostBinding;
 import com.example.me2you.model.CityModel;
 import com.example.me2you.model.Model;
-import com.example.me2you.model.Student;
+import com.example.me2you.model.Post;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
+import java.util.concurrent.atomic.AtomicReference;
 
-public class AddStudentFragment extends Fragment {
-    FragmentAddStudentBinding binding;
+public class AddPostFragment extends Fragment {
+    FragmentAddPostBinding binding;
     ActivityResultLauncher<Void> cameraLauncher;
     ActivityResultLauncher<String> galleryLauncher;
-    private ArrayAdapter<String> adapter;
+    FirebaseAuth auth = FirebaseAuth.getInstance();
 
     Boolean isAvatarSelected = false;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        FragmentActivity parentActivity = getActivity();
-        parentActivity.addMenuProvider(new MenuProvider() {
-            @Override
-            public void onCreateMenu(@NonNull Menu menu, @NonNull MenuInflater menuInflater) {
-                menu.removeItem(R.id.addStudentFragment);
-            }
-
-            @Override
-            public boolean onMenuItemSelected(@NonNull MenuItem menuItem) {
-                return false;
-            }
-        },this, Lifecycle.State.RESUMED);
 
         cameraLauncher = registerForActivityResult(new ActivityResultContracts.TakePicturePreview(), new ActivityResultCallback<Bitmap>() {
             @Override
@@ -81,8 +72,10 @@ public class AddStudentFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        binding = FragmentAddStudentBinding.inflate(inflater,container,false);
+        binding = FragmentAddPostBinding.inflate(inflater,container,false);
         View view = binding.getRoot();
+
+        AddPostFragmentArgs args = AddPostFragmentArgs.fromBundle(getArguments());
 
         ArrayList<String> cities = new ArrayList<String>();
         LiveData<List<String>> data = CityModel.instance.getCities();
@@ -95,7 +88,6 @@ public class AddStudentFragment extends Fragment {
         cityAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         citySpinner.setAdapter(cityAdapter);
 
-        AddStudentFragmentArgs args = AddStudentFragmentArgs.fromBundle(getArguments());
 
         data.observe(getViewLifecycleOwner(),list->{
             list.forEach(item->{
@@ -111,25 +103,35 @@ public class AddStudentFragment extends Fragment {
 //            binding.progressBarAddPost.setVisibility(View.GONE);
         });
 
+
         binding.saveBtn.setOnClickListener(view1 -> {
-            String name = binding.nameEt.getText().toString();
-            String stId = binding.idEt.getText().toString();
-            Student st = new Student(stId,name,"",false);
+            String id;
+            String description = binding.descriptionTV.getText().toString();
+            String itemType = binding.itemTypeTV.getText().toString();
+            String phoneNumber = binding.phoneNumTV.getText().toString();
+            String location = args.getCity();
+            String currentUserId = auth.getCurrentUser().getUid();
+
+            id = args.getPostId();
+            if(id == null) {
+                id = UUID.randomUUID().toString().replaceAll("-", "").toUpperCase();
+            }
+            Post newPost = new Post(id,currentUserId,"",location,itemType,description);
 
             if (isAvatarSelected){
                 binding.avatarImg.setDrawingCacheEnabled(true);
                 binding.avatarImg.buildDrawingCache();
                 Bitmap bitmap = ((BitmapDrawable) binding.avatarImg.getDrawable()).getBitmap();
-                Model.instance().uploadImage(stId, bitmap, url->{
+                Model.instance().uploadImage(currentUserId, bitmap, url->{
                     if (url != null){
-                        st.setAvatarUrl(url);
+                        newPost.setPictureUrl(url);
                     }
-                    Model.instance().addStudent(st, (unused) -> {
+                    Model.instance().addPost(newPost, (unused) -> {
                         Navigation.findNavController(view1).popBackStack();
                     });
                 });
             }else {
-                Model.instance().addStudent(st, (unused) -> {
+                Model.instance().addPost(newPost, (unused) -> {
                     Navigation.findNavController(view1).popBackStack();
                 });
             }

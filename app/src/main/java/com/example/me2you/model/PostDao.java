@@ -10,17 +10,17 @@ import androidx.room.Query;
 import java.util.List;
 
 @Dao
-public interface StudentDao {
-    @Query("select * from Student")
-    LiveData<List<Student>> getAll();
+public interface PostDao {
+    @Query("select * from Post")
+    LiveData<List<Post>> getAll();
 
-    @Query("select * from Student where id = :studentId")
-    Student getStudentById(String studentId);
+    @Query("select * from Post where userId = :userId")
+    Post getPostById(String userId);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insertAll(Student... students);
+    void insertAll(Post... posts);
 
     @Delete
-    void delete(Student student);
+    void delete(Post post);
 }
 

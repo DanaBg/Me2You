@@ -20,7 +20,7 @@ import com.example.me2you.databinding.FragmentStudentsListBinding;
 import com.example.me2you.model.Model;
 import com.example.me2you.model.Movie;
 import com.example.me2you.model.MovieModel;
-import com.example.me2you.model.Student;
+import com.example.me2you.model.Post;
 
 import java.util.List;
 
@@ -42,7 +42,7 @@ public class StudentsListFragment extends Fragment {
         binding.recyclerView.setAdapter(adapter);
 
         View addButton = view.findViewById(R.id.btnAdd);
-        NavDirections action = StudentsListFragmentDirections.actionGlobalAddStudentFragment();
+        NavDirections action = StudentsListFragmentDirections.actionGlobalAddPostFragment();
         addButton.setOnClickListener(Navigation.createNavigateOnClickListener(action));
 
         binding.progressBar.setVisibility(View.GONE);
@@ -77,6 +77,6 @@ public class StudentsListFragment extends Fragment {
 
     void reloadData(){
 //        binding.progressBar.setVisibility(View.VISIBLE);
-        Model.instance().refreshAllStudents();
+        Model.instance().refreshAllPosts();
     }
 }

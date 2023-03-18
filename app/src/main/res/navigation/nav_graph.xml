@@ -9,33 +9,34 @@
         android:id="@+id/studentsListFragment"
         android:name="com.example.me2you.StudentsListFragment"
         android:label="Shared Items"
-        tools:layout="@layout/fragment_students_list"/>
+        tools:layout="@layout/fragment_students_list">
+    </fragment>
     <fragment
         android:id="@+id/myItemsFragment"
         android:name="com.example.me2you.MyItemsFragment"
-        android:label="My Items"
-        tools:layout="@layout/fragment_my_items">
+        android:label="fragment_blue"
+        tools:layout="@layout/fragment_my_items" >
         <argument
             android:name="blueTitle"
             app:argType="string" />
     </fragment>
     <fragment
-        android:id="@+id/addStudentFragment"
-        android:name="com.example.me2you.AddStudentFragment"
+        android:id="@+id/addPostFragment"
+        android:name="com.example.me2you.AddPostFragment"
         android:label="Add Item"
-        tools:layout="@layout/fragment_add_student">
+        tools:layout="@layout/fragment_add_post">
         <argument
             android:name="description"
             android:defaultValue="@null"
             app:argType="string"
             app:nullable="true" />
         <argument
-            android:name="size"
+            android:name="phoneNumber"
             android:defaultValue="@null"
             app:argType="string"
             app:nullable="true" />
         <argument
-            android:name="imgUrl"
+            android:name="pictureUrl"
             android:defaultValue="@null"
             app:argType="string"
             app:nullable="true" />
@@ -44,11 +45,23 @@
             android:defaultValue="@null"
             app:argType="string"
             app:nullable="true" />
+        <argument
+            android:name="postId"
+            android:defaultValue="@null"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="itemType"
+            android:defaultValue="@null"
+            app:argType="string"
+            app:nullable="true" />
     </fragment>
-    <action android:id="@+id/action_global_addStudentFragment" app:destination="@id/addStudentFragment" />
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.example.me2you.ProfileFragment"
-        android:label="Profile"
+        android:label="About"
         tools:layout="@layout/fragment_profile" />
+    <action
+        android:id="@+id/action_global_addPostFragment"
+        app:destination="@id/addPostFragment" />
 </navigation>
