@@ -9,14 +9,13 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.Navigation;
 
-public class BlueFragment extends Fragment {
+public class MyItemsFragment extends Fragment {
     TextView titleTv;
     String title;
 
-    public static BlueFragment newInstance(String title){
-        BlueFragment frag = new BlueFragment();
+    public static MyItemsFragment newInstance(String title){
+        MyItemsFragment frag = new MyItemsFragment();
         Bundle bundle = new Bundle();
         bundle.putString("TITLE",title);
         frag.setArguments(bundle);
@@ -36,19 +35,19 @@ public class BlueFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_blue, container, false);
+        View view = inflater.inflate(R.layout.fragment_my_items, container, false);
 
-        title = BlueFragmentArgs.fromBundle(getArguments()).getBlueTitle();
-
-        TextView titleTv = view.findViewById(R.id.bluefrag_title_tv);
-        if (title != null){
-            titleTv.setText(title);
-        }
-
-        View button = view.findViewById(R.id.bluefrag_back_btn);
-        button.setOnClickListener((view1)->{
-            Navigation.findNavController(view1).popBackStack();
-        });
+//        title = BlueFragmentArgs.fromBundle(getArguments()).getBlueTitle();
+//
+//        TextView titleTv = view.findViewById(R.id.bluefrag_title_tv);
+//        if (title != null){
+//            titleTv.setText(title);
+//        }
+//
+//        View button = view.findViewById(R.id.bluefrag_back_btn);
+//        button.setOnClickListener((view1)->{
+//            Navigation.findNavController(view1).popBackStack();
+//        });
         return view;
     }
 

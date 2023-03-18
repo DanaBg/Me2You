@@ -9,16 +9,12 @@
         android:id="@+id/studentsListFragment"
         android:name="com.example.me2you.StudentsListFragment"
         android:label="Shared Items"
-        tools:layout="@layout/fragment_students_list">
-        <action
-            android:id="@+id/action_studentsListFragment_to_blueFragment"
-            app:destination="@id/blueFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_students_list"/>
     <fragment
-        android:id="@+id/blueFragment"
-        android:name="com.example.me2you.BlueFragment"
-        android:label="fragment_blue"
-        tools:layout="@layout/fragment_blue" >
+        android:id="@+id/myItemsFragment"
+        android:name="com.example.me2you.MyItemsFragment"
+        android:label="My Items"
+        tools:layout="@layout/fragment_my_items">
         <argument
             android:name="blueTitle"
             app:argType="string" />
