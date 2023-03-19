@@ -103,7 +103,7 @@
                     android:id="@+id/phoneNumTV"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="phone number"
+                    android:hint="phone-number"
                     android:inputType="phone" />
             </com.google.android.material.textfield.TextInputLayout>
 

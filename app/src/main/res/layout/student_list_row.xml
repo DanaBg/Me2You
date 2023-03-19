@@ -15,52 +15,52 @@
         android:layout_marginBottom="4dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/studentlistrow_name_tv"
+        app:layout_constraintStart_toEndOf="@+id/postDescriptionTV"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/avatar" />
 
     <TextView
-        android:id="@+id/studentlistrow_name_tv"
+        android:id="@+id/postDescriptionTV"
         android:layout_width="90dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="4dp"
         android:text="TextView"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/studentlistrow_id_tv"
+        app:layout_constraintBottom_toTopOf="@+id/postItemTypeTV"
         app:layout_constraintEnd_toStartOf="@+id/studentlistrow_avatar_img"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/studentlistrow_id_tv"
+        android:id="@+id/postItemTypeTV"
         android:layout_width="82dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="4dp"
         android:text="TextView"
         android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/studentlistrow_id_tv2"
+        app:layout_constraintBottom_toTopOf="@+id/postLocationTV"
         app:layout_constraintEnd_toStartOf="@+id/studentlistrow_avatar_img"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/studentlistrow_name_tv" />
+        app:layout_constraintTop_toBottomOf="@+id/postDescriptionTV" />
 
     <TextView
-        android:id="@+id/studentlistrow_id_tv2"
+        android:id="@+id/postLocationTV"
         android:layout_width="80dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="4dp"
         android:text="TextView"
         android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/studentlistrow_id_tv3"
+        app:layout_constraintBottom_toTopOf="@+id/postPhoneNumberTV"
         app:layout_constraintEnd_toStartOf="@+id/studentlistrow_avatar_img"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/studentlistrow_id_tv" />
+        app:layout_constraintTop_toBottomOf="@+id/postItemTypeTV" />
 
     <TextView
-        android:id="@+id/studentlistrow_id_tv3"
+        android:id="@+id/postPhoneNumberTV"
         android:layout_width="80dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -71,5 +71,5 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/studentlistrow_avatar_img"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/studentlistrow_id_tv2" />
+        app:layout_constraintTop_toBottomOf="@+id/postLocationTV" />
 </androidx.constraintlayout.widget.ConstraintLayout>

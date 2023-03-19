@@ -122,14 +122,14 @@ public class AddPostFragment extends Fragment {
             String description = binding.descriptionTV.getText().toString();
             String itemType = binding.itemTypeTV.getText().toString();
             String phoneNumber = binding.phoneNumTV.getText().toString();
-            String location = args.getCity();
+            String location = binding.spinner.getSelectedItem().toString();
             String currentUserId = auth.getCurrentUser().getUid();
 
             id = args.getPostId();
             if(id == null) {
                 id = UUID.randomUUID().toString().replaceAll("-", "").toUpperCase();
             }
-            Post newPost = new Post(id,currentUserId,"",location,itemType,description);
+            Post newPost = new Post(id,currentUserId,"",location,itemType,description,phoneNumber);
 
             if (isAvatarSelected){
                 binding.avatarImg.setDrawingCacheEnabled(true);

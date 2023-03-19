@@ -24,17 +24,19 @@ public class Post {
     public String description="";
     public String pictureUrl="";
     public String itemType="";
+    public String phoneNumber="";
     public Long updateTime;
 
     public Post(){
     }
-    public Post( String id,String userId, String pictureUrl, String location, String itemType, String description) {
+    public Post( String id,String userId, String pictureUrl, String location, String itemType, String description, String phoneNumber) {
         this.userId = userId;
         this.id = id;
         this.pictureUrl = pictureUrl;
         this.location = location;
         this.description = description;
         this.itemType = itemType;
+        this.phoneNumber = phoneNumber;
     }
 
     static final String USER_ID = "userId";
@@ -44,6 +46,7 @@ public class Post {
     static final String ITEM_TYPE = "itemType";
     static final String COLLECTION = "items";
     static final String LOCATION = "location";
+    static final String PHONE_NUM = "phoneNumber";
     static final String UPDATE_TIME = "updateTime";
     static final String LOCAL_UPDATE_TIME = "itemsLocalUpdateTime";
 
@@ -54,7 +57,8 @@ public class Post {
         String location = (String)json.get(LOCATION);
         String itemType = (String)json.get(ITEM_TYPE);
         String description = (String)json.get(DESCRIPTION);
-        Post newPost = new Post(id,userId,pictureUrl,location,itemType,description);
+        String phoneNumber = (String)json.get(PHONE_NUM);
+        Post newPost = new Post(id,userId,pictureUrl,location,itemType,description,phoneNumber);
         try{
             Timestamp time = (Timestamp) json.get(UPDATE_TIME);
             newPost.setUpdateTime(time.getSeconds());
@@ -104,7 +108,9 @@ public class Post {
     public void setPictureUrl(String pictureUrl) {
         this.pictureUrl = pictureUrl;
     }
-
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
     public void setUpdateTime(Long updateTime) {
         this.updateTime = updateTime;
     }
@@ -134,6 +140,8 @@ public class Post {
     public String getPictureUrl() {
         return pictureUrl;
     }
+
+    public String getPhoneNumber() { return phoneNumber; }
 
     public Long getUpdateTime() {
         return updateTime;
