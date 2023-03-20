@@ -5,7 +5,6 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
@@ -18,10 +17,6 @@ import android.view.ViewGroup;
 import com.example.me2you.R;
 import com.example.me2you.databinding.FragmentPostListBinding;
 import com.example.me2you.model.Model;
-import com.example.me2you.model.Movie;
-import com.example.me2you.model.MovieModel;
-
-import java.util.List;
 
 public class PostListFragment extends Fragment {
     FragmentPostListBinding binding;
@@ -56,13 +51,6 @@ public class PostListFragment extends Fragment {
 
         binding.swipeRefresh.setOnRefreshListener(()->{
             reloadData();
-        });
-
-        LiveData<List<Movie>> data = MovieModel.instance.searchMoviesByTitle("avatar");
-        data.observe(getViewLifecycleOwner(),list->{
-            list.forEach(item->{
-
-            });
         });
 
         return view;
