@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 import android.os.Handler;
 import android.view.LayoutInflater;
@@ -25,9 +26,7 @@ public class ProfileFragment extends Fragment {
     private Button logoutButton;
     private Button editButton;
     private FragmentProfileBinding binding;
-    private String userDisplayName;
     private String userEmail;
-    private String userPassword;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -38,12 +37,9 @@ public class ProfileFragment extends Fragment {
         logoutButton = root.findViewById(R.id.logout);
         editButton = root.findViewById(R.id.editProfile);
         if(user != null) {
-            userEmail = user.getEmail();
-            userDisplayName = user.getDisplayName();
+            userEmail = user.getDisplayName();
 
-            binding.email.setText(userEmail);
-            binding.profileName.setText(userDisplayName);
-            binding.password.setText("******");
+            binding.userName.setText(userEmail);
 
 //            Uri imageUri = Uri.parse("https://cdn.primedia.co.za/primedia-broadcasting/image/upload/c_fill,h_436,w_700/ykcxncolmdjmafvnznrm");
 //
@@ -53,8 +49,6 @@ public class ProfileFragment extends Fragment {
 //
 //            user.updateProfile(profileUpdates);
 
-            Handler hand = new Handler();
-            hand.postDelayed(setText(),100);
             if(user.getPhotoUrl() != null) {
                 Picasso.get().load(user.getPhotoUrl()).into(binding.profileImg);
             }
@@ -70,25 +64,16 @@ public class ProfileFragment extends Fragment {
             }
         });
 
-//        editButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//                ProfileFragmentDirections.ActionNavigationProfileToEditProfile action =
-//                        ProfileFragmentDirections.actionNavigationProfileToEditProfile(user.getDisplayName(),
-//                                user.getPhotoUrl());
-//
-//                Navigation.findNavController(v).navigate(action);
-//            }
-//        });
-        return root;
-    }
-    public Runnable setText(){
-        return new Runnable() {
+        editButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void run() {
-                binding.profileName.setText(user.getDisplayName());
+            public void onClick(View v) {
+                ProfileFragmentDirections.ActionNavigationProfileToEditProfile action =
+                        ProfileFragmentDirections.actionNavigationProfileToEditProfile(user.getDisplayName(),
+                                user.getPhotoUrl());
+
+                Navigation.findNavController(v).navigate(action);
             }
-        };
+        });
+        return root;
     }
 }
