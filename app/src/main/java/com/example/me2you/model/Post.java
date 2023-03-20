@@ -86,6 +86,7 @@ public class Post {
         json.put(USER_ID, getUserId());
         json.put(DESCRIPTION, getDescription());
         json.put(ITEM_TYPE, getItemType());
+        json.put(PHONE_NUM,getPhoneNumber());
         json.put(LOCATION, getLocation());
         json.put(PICTURE_URL, getPictureUrl());
         json.put(UPDATE_TIME, FieldValue.serverTimestamp());
