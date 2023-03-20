@@ -7,13 +7,13 @@
 
     <fragment
         android:id="@+id/studentsListFragment"
-        android:name="com.example.me2you.StudentsListFragment"
+        android:name="com.example.me2you.ui.PostListFragment"
         android:label="Shared Items"
-        tools:layout="@layout/fragment_students_list">
+        tools:layout="@layout/fragment_post_list">
     </fragment>
     <fragment
         android:id="@+id/myItemsFragment"
-        android:name="com.example.me2you.MyItemsFragment"
+        android:name="com.example.me2you.ui.MyItemsFragment"
         android:label="My Items"
         tools:layout="@layout/fragment_my_items">
         <argument
@@ -22,7 +22,7 @@
     </fragment>
     <fragment
         android:id="@+id/addPostFragment"
-        android:name="com.example.me2you.AddPostFragment"
+        android:name="com.example.me2you.ui.AddPostFragment"
         android:label="Add Item"
         tools:layout="@layout/fragment_add_post">
         <argument
@@ -58,7 +58,7 @@
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.example.me2you.ProfileFragment"
+        android:name="com.example.me2you.ui.ProfileFragment"
         android:label="My Profile"
         tools:layout="@layout/fragment_profile" />
     <action
