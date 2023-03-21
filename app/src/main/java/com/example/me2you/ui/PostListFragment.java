@@ -32,7 +32,7 @@ public class PostListFragment extends Fragment {
 
         binding.recyclerView.setHasFixedSize(true);
         binding.recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        adapter = new PostRecyclerAdapter(getLayoutInflater(),viewModel.getData().getValue());
+        adapter = new PostRecyclerAdapter(getLayoutInflater(),viewModel.getData().getValue(), false);
         binding.recyclerView.setAdapter(adapter);
 
         View addButton = view.findViewById(R.id.btnAdd);

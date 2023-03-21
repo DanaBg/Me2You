@@ -9,6 +9,7 @@ import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LiveData;
 import androidx.navigation.Navigation;
@@ -25,9 +26,11 @@ import com.example.me2you.model.CityModel;
 import com.example.me2you.model.Model;
 import com.example.me2you.model.Post;
 import com.google.firebase.auth.FirebaseAuth;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.UUID;
 
 public class AddPostFragment extends Fragment {
@@ -40,6 +43,13 @@ public class AddPostFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        AddPostFragmentArgs args = AddPostFragmentArgs.fromBundle(getArguments());
+
+        if(args.getCity() != null) {
+            ((AppCompatActivity) getContext()).getSupportActionBar().setTitle("Edit Item");
+            isAvatarSelected = true;
+        }
 
         cameraLauncher = registerForActivityResult(new ActivityResultContracts.TakePicturePreview(), new ActivityResultCallback<Bitmap>() {
             @Override
@@ -81,6 +91,29 @@ public class AddPostFragment extends Fragment {
         cityAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         citySpinner.setAdapter(cityAdapter);
 
+        String postDescription = args.getDescription();
+        if(postDescription != null) {
+            binding.descriptionTV.setText(postDescription);
+        }
+
+        String postItemType = args.getItemType();
+        if(postItemType != null) {
+            binding.itemTypeTV.setText(postItemType);
+        }
+
+        String postPhoneNumber = args.getPhoneNumber();
+        if(postPhoneNumber != null) {
+            binding.phoneNumTV.setText(postPhoneNumber);
+        }
+
+        String imgUrl = args.getPictureUrl();
+        if(imgUrl != null) {
+            if (!Objects.equals(imgUrl, "")) {
+                Picasso.get().load(imgUrl).placeholder(R.drawable.avatar).into(binding.avatarImg);
+            }else{
+                binding.avatarImg.setImageResource(R.drawable.avatar);
+            }
+        }
 
         data.observe(getViewLifecycleOwner(),list->{
             list.forEach(item->{
@@ -130,7 +163,7 @@ public class AddPostFragment extends Fragment {
             }
         });
 
-        binding.cancellBtn.setOnClickListener(view1 -> Navigation.findNavController(view1).popBackStack(R.id.studentsListFragment,false));
+        binding.cancellBtn.setOnClickListener(view1 -> Navigation.findNavController(view1).popBackStack());
 
         binding.cameraButton.setOnClickListener(view1->{
             cameraLauncher.launch(null);

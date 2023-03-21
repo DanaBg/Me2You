@@ -7,6 +7,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.me2you.R;
@@ -23,7 +25,9 @@ class PostViewHolder extends RecyclerView.ViewHolder{
     TextView phoneNumberTv;
     List<Post> data;
     ImageView avatarImage;
-    public PostViewHolder(@NonNull View itemView, List<Post> data) {
+    ImageView editBtn;
+
+    public PostViewHolder(@NonNull View itemView, List<Post> data, Boolean shouldShowEdit) {
         super(itemView);
         this.data = data;
         descriptionTv = itemView.findViewById(R.id.postDescriptionTV);
@@ -31,6 +35,28 @@ class PostViewHolder extends RecyclerView.ViewHolder{
         phoneNumberTv = itemView.findViewById(R.id.postPhoneNumberTV);
         locationTv = itemView.findViewById(R.id.postLocationTV);
         avatarImage = itemView.findViewById(R.id.studentlistrow_avatar_img);
+        editBtn = itemView.findViewById(R.id.postrow_edit);
+
+        if(!shouldShowEdit) {
+            editBtn.setVisibility(View.GONE);
+        };
+
+        editBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int pos = getAdapterPosition();
+                Post post = data.get(pos);
+                MyItemsFragmentDirections.ActionNavigationMyItemsToEditProfile action =
+                        MyItemsFragmentDirections.actionNavigationMyItemsToEditProfile();
+                action.setPostId(post.getId());
+                action.setDescription(post.getDescription());
+                action.setPhoneNumber(post.getPhoneNumber());
+                action.setPictureUrl(post.getPictureUrl());
+                action.setCity(post.getLocation());
+                action.setItemType(post.getItemType());
+                Navigation.findNavController(view).navigate(action);
+            }
+        });
     }
 
     public void bind(Post st, int pos) {
@@ -49,20 +75,22 @@ class PostViewHolder extends RecyclerView.ViewHolder{
 public class PostRecyclerAdapter extends RecyclerView.Adapter<PostViewHolder>{
     LayoutInflater inflater;
     List<Post> data;
+    Boolean shouldShowEdit;
     public void setData(List<Post> data){
         this.data = data;
         notifyDataSetChanged();
     }
-    public PostRecyclerAdapter(LayoutInflater inflater, List<Post> data){
+    public PostRecyclerAdapter(LayoutInflater inflater, List<Post> data, Boolean shouldShowEdit){
         this.inflater = inflater;
         this.data = data;
+        this.shouldShowEdit = shouldShowEdit;
     }
 
     @NonNull
     @Override
     public PostViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = inflater.inflate(R.layout.post_list_row,parent,false);
-        return new PostViewHolder(view, data);
+        return new PostViewHolder(view, data, this.shouldShowEdit);
     }
 
     @Override
