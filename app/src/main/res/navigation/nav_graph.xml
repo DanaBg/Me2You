@@ -16,9 +16,9 @@
         android:name="com.example.me2you.ui.MyItemsFragment"
         android:label="My Items"
         tools:layout="@layout/fragment_my_items">
-        <argument
-            android:name="blueTitle"
-            app:argType="string" />
+        <action
+            android:id="@+id/action_navigation_my_items_to_edit_profile"
+            app:destination="@id/addPostFragment" />
     </fragment>
 
     <fragment

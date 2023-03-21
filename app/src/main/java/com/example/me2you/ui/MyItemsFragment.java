@@ -27,7 +27,7 @@ public class MyItemsFragment extends Fragment {
 
         binding.recyclerView.setHasFixedSize(true);
         binding.recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        PostRecyclerAdapter adapter = new PostRecyclerAdapter(getLayoutInflater(), viewModel.getData().getValue());
+        PostRecyclerAdapter adapter = new PostRecyclerAdapter(getLayoutInflater(), viewModel.getData().getValue(), true);
         binding.recyclerView.setAdapter(adapter);
 
         binding.progressBar.setVisibility(View.GONE);
